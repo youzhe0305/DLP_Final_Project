@@ -8,13 +8,13 @@ datasets:
   test_1:  # the 1st test dataset
     name: GOPRO
     type: VideoRecurrentSplitClipsTestDataset
-    dataroot_gt: /media/xbm/data/VideoDeblur_Dataset/GOPRO/GOPRO_oriname/test/gt
-    dataroot_lq: /media/xbm/data/VideoDeblur_Dataset/GOPRO/GOPRO_oriname/test/blur
+    dataroot_gt: /home/youzhe0305/DLP_Final_Project/dataset/gt
+    dataroot_lq: /home/youzhe0305/DLP_Final_Project/dataset/blur 
     cache_data: False
     io_backend:
       type: disk
 
-    num_frame: 30
+    num_frame: 1 # 更動
     num_overlap: 0
 
 # network structures
@@ -25,8 +25,8 @@ network_g:
 
 # path
 path:
-  pretrain_network_g: experiments/GOPRO.pth
-  strict_load_g: true
+  pretrain_network_g: /home/youzhe0305/DLP_Final_Project/experiments/net_g_200000.pth
+  strict_load_g: false
 
 # validation settingsa
 val:

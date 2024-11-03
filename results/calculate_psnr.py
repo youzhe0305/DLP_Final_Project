@@ -2,15 +2,16 @@ import os
 import cv2
 from basicsr.metrics.psnr_ssim import calculate_psnr, calculate_ssim
 
-restor_root = '/media/xbm/data/xbm/BasicSR/BaiscSR1/results/GOPRO'
-gt_root = '/media/xbm/data/VideoDeblur_Dataset/GOPRO/GOPRO_oriname/test/gt'
+restor_root = '/home/youzhe0305/DLP_Final_Project/results/GOPRO'
+gt_root = '/home/youzhe0305/DLP_Final_Project/dataset/gt'
 
 psnr = 0.0
 ssim = 0.0
 count = 0
 for video in sorted(os.listdir(restor_root)):
-    video_gt_root = gt_root + '/' + video
+
     video_restor_root = restor_root + '/' + video
+    video_gt_root = gt_root + '/' + video
     img_gt_list = sorted(os.listdir(video_gt_root))
     img_restor_list = sorted(os.listdir(video_restor_root))
     list_id = 0
@@ -29,3 +30,4 @@ for video in sorted(os.listdir(restor_root)):
 
 print('PSNR:', psnr / count)
 print('SSIM:', ssim / count)
+

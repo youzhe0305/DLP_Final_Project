@@ -72,7 +72,7 @@ def parse(opt_path, root_path, is_train=True, debug=False):
         if (val is not None) and ('resume_state' in key or 'pretrain_network' in key):
             opt['path'][key] = osp.expanduser(val)
 
-    if is_train:
+    if is_train:    
         experiments_root = osp.join(root_path, 'experiments', opt['name'])
         opt['path']['experiments_root'] = experiments_root
         opt['path']['models'] = osp.join(experiments_root, 'models')

@@ -17,4 +17,5 @@ mmcv
 einops
 thop
 ptflops
-cupy-cuda113
+cupy-cuda12x
+

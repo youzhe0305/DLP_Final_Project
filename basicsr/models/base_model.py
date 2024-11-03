@@ -14,8 +14,10 @@ class BaseModel():
     """Base model."""
 
     def __init__(self, opt):
+        # print('Base Model Opt')
+        # print(opt)
         self.opt = opt
-        self.device = torch.device('cuda' if opt['num_gpu'] != 0 else 'cpu')
+        self.device = torch.device('cuda:3' if opt['num_gpu'] != 0 else 'cpu')
         self.is_train = opt['is_train']
         self.schedulers = []
         self.optimizers = []
@@ -280,6 +282,22 @@ class BaseModel():
                 load_net.pop(k)
         self._print_different_keys_loading(net, load_net, strict)
         net.load_state_dict(load_net, strict=strict)
+        
+        
+        '''
+        修改處
+        '''
+        for name, para in net.named_parameters():
+            # if all(keyword not in name for keyword in ['forward_propagation', 'recons']): # 把不是forward(RNN)的全部凍結 
+            #     para.requires_grad = False
+            print('name', name)
+            print(para.requires_grad)
+
+
+        '''
+        修改處
+        '''
+        
 
     @master_only
     def save_training_state(self, epoch, current_iter):

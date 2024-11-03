@@ -3,6 +3,7 @@ import torch
 import os
 import time
 from os import path as osp
+from torchsummary import summary 
 
 from basicsr.data import build_dataloader, build_dataset
 from basicsr.models import build_model
@@ -12,7 +13,7 @@ from basicsr.utils.options import dict2str, parse_options
 def test_pipeline(root_path):
     # parse options, set distributed setting, set ramdom seed
     opt = parse_options(root_path, is_train=False)
-
+    print(opt)
     torch.backends.cudnn.benchmark = True
     # torch.backends.cudnn.deterministic = True
 
@@ -35,6 +36,10 @@ def test_pipeline(root_path):
     # create model
     model = build_model(opt)
 
+    print('++++++++++++++++++++++++++++++++++++++')
+    total_params = sum(p.numel() for p in model.parameters())
+    print(total_params)
+
     for test_loader in test_loaders:
         test_set_name = test_loader.dataset.opt['name']
         logger.info(f'Testing {test_set_name}...')
@@ -42,8 +47,10 @@ def test_pipeline(root_path):
 
 
 if __name__ == '__main__':
-    # time_start = time.time()
+    time_start = time.time()
+    # print(time_start)
     root_path = osp.abspath(osp.join(__file__, osp.pardir, osp.pardir))
     test_pipeline(root_path)
-    # time_end = time.time()
+    time_end = time.time()
+    # print(time_end)
     # print("inference time:", time_end-time_start)

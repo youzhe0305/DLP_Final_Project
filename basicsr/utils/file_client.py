@@ -60,6 +60,8 @@ class HardDiskBackend(BaseStorageBackend):
 
     def get(self, filepath):
         filepath = str(filepath)
+        # print('.............................................................')
+        # print(filepath)
         with open(filepath, 'rb') as f:
             value_buf = f.read()
         return value_buf

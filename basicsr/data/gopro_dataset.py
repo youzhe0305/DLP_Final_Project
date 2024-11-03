@@ -182,12 +182,16 @@ class GOPRORecurrentDataset(data.Dataset):
         img_gts = []
         for neighbor in neighbor_list:
             if self.is_lmdb:
+                # print('LMDB')
                 img_lq_path = f'{clip_name}/{neighbor:06d}'
                 img_gt_path = f'{clip_name}/{neighbor:06d}'
             else:
+                # print('NO LMDB')
                 img_lq_path = self.lq_root / clip_name / f'{neighbor:06d}.png'
                 img_gt_path = self.gt_root / clip_name / f'{neighbor:06d}.png'
 
+            # print(clip_name)
+            # print('----------------------------------------------------------')
             # get LQ
             img_bytes = self.file_client.get(img_lq_path, 'lq')
             img_lq = imfrombytes(img_bytes, float32=True)

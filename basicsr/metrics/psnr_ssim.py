@@ -195,10 +195,10 @@ def _ssim_3d(img1, img2, max_value):
     img1 = img1.astype(np.float64)
     img2 = img2.astype(np.float64)
 
-    kernel = _generate_3d_gaussian_kernel().cuda()
+    kernel = _generate_3d_gaussian_kernel().cuda(3)
 
-    img1 = torch.tensor(img1).float().cuda()
-    img2 = torch.tensor(img2).float().cuda()
+    img1 = torch.tensor(img1).float().cuda(3)
+    img2 = torch.tensor(img2).float().cuda(3)
 
     mu1 = _3d_gaussian_calculator(img1, kernel)
     mu2 = _3d_gaussian_calculator(img2, kernel)

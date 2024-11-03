@@ -119,13 +119,14 @@ def train_pipeline(root_path):
 
     # create model
     if resume_state:  # resume training
-        model = build_model(opt)
+        model = build_model(opt)     
         model.resume_training(resume_state)  # handle optimizers and schedulers
         logger.info(f"Resuming training from epoch: {resume_state['epoch']}, " f"iter: {resume_state['iter']}.")
         start_epoch = resume_state['epoch']
         current_iter = resume_state['iter']
     else:
-        model = build_model(opt)
+        model = build_model(opt) # VideoRecurrentModel
+        
         start_epoch = 0
         current_iter = 0
 

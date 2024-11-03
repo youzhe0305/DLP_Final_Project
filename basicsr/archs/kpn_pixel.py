@@ -24,7 +24,7 @@ def Dtype(t):
 @cupy._util.memoize(for_each_device=True)
 def load_kernel(kernel_name, code, **kwargs):
     code = Template(code).substitute(**kwargs)
-    kernel_code = cupy.cuda.compile_with_cache(code)
+    kernel_code = cupy.RawModule(code=code)
     return kernel_code.get_function(kernel_name)
 
 

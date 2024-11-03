@@ -1,0 +1,37 @@
+name: GOPRO_test
+model_type: VideoRecurrentModel
+scale: 1
+num_gpu: 1  # set num_gpu: 0 for cpu mode
+manual_seed: 0
+
+datasets:
+  test_1:  # the 1st test dataset
+    name: GOPRO
+    type: VideoRecurrentSplitClipsTestDataset
+    dataroot_gt: /home/youzhe0305/DLP_Final_Project/stream_img/gt
+    dataroot_lq: /home/youzhe0305/DLP_Final_Project/stream_img/blur 
+    cache_data: False
+    io_backend:
+      type: disk
+
+    num_frame: 1 # 更動
+    num_overlap: 0
+
+# network structures
+network_g:
+  type: Deblur
+  num_feat: 64
+  num_block: 15
+
+# path
+path:
+  pretrain_network_g: /home/youzhe0305/DLP_Final_Project/experiments/net_g_200000.pth
+  strict_load_g: false
+
+# validation settingsa
+val:
+  save_img: true
+  flip_seq: false
+  suffix: ~  # add suffix to saved images, if None, use exp name
+
+  metrics: ~
